@@ -39,15 +39,15 @@ class CloudInferenceService:
         self.models = {
             "text": ModelConfig(
                 name="mistralai/Mixtral-8x7B-Instruct-v0.1",
-                endpoint="https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
+                endpoint="https://router.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
             ),
             "image": ModelConfig(
                 name="stabilityai/stable-diffusion-xl-base-1.0",
-                endpoint="https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0"
+                endpoint="https://router.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0"
             ),
             "fast-text": ModelConfig(
                 name="google/flan-t5-xxl",
-                endpoint="https://api-inference.huggingface.co/models/google/flan-t5-xxl",
+                endpoint="https://router.huggingface.co/models/google/flan-t5-xxl",
                 max_tokens=512
             )
         }
@@ -190,7 +190,7 @@ class CloudInferenceService:
         return {
             "status": "operational",
             "mode": "cloud",
-            "optimization": "100x",
-            "models_available": list(self.models.keys()),
-            "connection_pool": "active"
+            "service": "huggingface-router",
+            "models": list(self.models.keys()),
+            "optimization": "100x"
         }
