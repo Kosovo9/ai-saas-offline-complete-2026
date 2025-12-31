@@ -1,0 +1,17 @@
+services:
+  # Backend Service (The Core Brain)
+  - type: web
+    name: ai-saas-backend
+    runtime: python
+    repo: https://github.com/Kosovo9/ai-saas-v2
+    plan: free
+    region: oregon
+    buildCommand: "cd backend && pip install -r requirements.txt"
+    startCommand: "cd backend && uvicorn backend_main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: AI_RUNTIME_MODE
+        value: CLOUD
+      - key: HUGGINGFACE_TOKEN
+        sync: false # Paste your token in the Render Dashboard prompt!
+      - key: PYTHON_VERSION
+        value: 3.9.0

@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .font-cyber {
+    font-family: 'Orbitron', sans-serif;
+  }
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+  .text-gold {
+    @apply bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-700 bg-clip-text text-transparent;
+  }
+  .bg-gold {
+    @apply bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600;
+  }
+  .border-gold {
+    @apply border-yellow-500/50 hover:border-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.2)];
+  }
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl;
+  }
+  .cyber-grid {
+    background-image: linear-gradient(rgba(234,179,8,0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(234,179,8,0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+}
+
+html, body, #root {
+  height: 100%;
+  @apply font-inter bg-black text-white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-black;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-yellow-500/20 rounded-full border border-yellow-500/30;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-yellow-500/40;
+}

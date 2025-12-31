@@ -1,0 +1,8 @@
+huggingface-hub==0.19.4
+aiohttp==3.9.0
+fastapi
+uvicorn
+python-dotenv
+mercadopago
+python-multipart
+google-generativeai
