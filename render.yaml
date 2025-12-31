@@ -3,7 +3,7 @@ services:
   - type: web
     name: ai-saas-backend
     runtime: python
-    repo: https://github.com/Kosovo9/ai-saas-v2
+    repo: https://github.com/Kosovo9/ai-saas-offline-complete-2026
     plan: free
     region: oregon
     buildCommand: "cd backend && pip install -r requirements.txt"
