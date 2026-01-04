@@ -28,11 +28,7 @@ const LandingPage = lazy(() => import('./pages/LandingPage'));
 // ✅ NASA-GRADE QUERY CLIENT
 const queryClient = new QueryClient();
 
-// ✅ BACKEND DISCOVERY
-const BACKEND_ENDPOINTS = [
-  'http://localhost:8000',
-  'https://ai-saas-backend-ds91.onrender.com',
-];
+import { BACKEND_URL, API_ENDPOINTS } from './config/api';
 
 const NeuralLoading = () => (
   <div className="min-h-screen bg-black flex items-center justify-center">
@@ -50,8 +46,8 @@ const NeuralLoading = () => (
 function App() {
   const [systemMode, setSystemMode] = useState<'CLOUD' | 'LOCAL'>('CLOUD');
   const [healthStatus, setHealthStatus] = useState<'healthy' | 'degraded' | 'offline'>('healthy');
-  const [backendUrl, setBackendUrl] = useState<string>('http://localhost:8000');
-  const [isDiscovering, setIsDiscovering] = useState(false);
+  const [backendUrl] = useState<string>(BACKEND_URL);
+  const [isDiscovering] = useState(false);
   const [performanceMetrics] = useState({ latency: 42, lastCheck: Date.now(), checks: 1 });
 
   const toggleMode = () => {

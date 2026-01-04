@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Shield, TrendingUp, Cpu, Lock, Globe, Activity, BarChart3, AlertCircle } from 'lucide-react';
 
+import { API_ENDPOINTS } from '../config/api';
+
 interface AntigravityControlProps {
     backendUrl: string;
 }
@@ -12,11 +14,9 @@ export default function AntigravityControl({ backendUrl }: AntigravityControlPro
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const activeUrl = backendUrl || 'https://ai-saas-backend-ds91.onrender.com';
-
     const fetchMetrics = async () => {
         try {
-            const response = await fetch(`${activeUrl}/antigravity/metrics`);
+            const response = await fetch(API_ENDPOINTS.ANTIGRAVITY_METRICS);
             if (response.ok) {
                 const data = await response.json();
                 setMetrics(data);
@@ -29,15 +29,15 @@ export default function AntigravityControl({ backendUrl }: AntigravityControlPro
 
     useEffect(() => {
         fetchMetrics();
-        const interval = setInterval(fetchMetrics, 2000);
+        const interval = setInterval(fetchMetrics, 5000); // 5s is more stable for production
         return () => clearInterval(interval);
-    }, [activeUrl]);
+    }, []);
 
     const activateAgent = async () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`${activeUrl}/antigravity/activate`, { method: 'POST' });
+            const response = await fetch(API_ENDPOINTS.ANTIGRAVITY_ACTIVATE, { method: 'POST' });
             if (!response.ok) throw new Error("Activation failed");
             await fetchMetrics();
         } catch (err: any) {

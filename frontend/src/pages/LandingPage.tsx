@@ -13,17 +13,16 @@ import {
     ArrowRight
 } from 'lucide-react';
 
+import { API_ENDPOINTS } from '../config/api';
+
 const LandingPage: React.FC = () => {
     const [email, setEmail] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    // Hardcoded for now, normally from env
-    const API_URL = 'http://localhost:8000';
-
     const handleCheckout = async (tier: string, method: 'mercadopago' | 'paypal' = 'mercadopago') => {
         setIsLoading(true);
         try {
-            const response = await axios.post(`${API_URL}/api/checkout`, {
+            const response = await axios.post(API_ENDPOINTS.CHECKOUT, {
                 tier: tier.toUpperCase(),
                 email: email || undefined,
                 method: method

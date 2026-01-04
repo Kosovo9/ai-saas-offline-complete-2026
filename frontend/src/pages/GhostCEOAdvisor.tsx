@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Crown, TrendingUp, Target, Clock, Shield, Zap, ChevronRight, Sparkles, Gem, Activity } from 'lucide-react';
 
+import { API_ENDPOINTS } from '../config/api';
+
 interface GhostCEOAdvisorProps {
     backendUrl: string;
     userId?: string;
@@ -18,10 +20,8 @@ export default function GhostCEOAdvisor({ backendUrl, userId = "THE-ONLY-ONE" }:
         setLoading(true);
         setAdvice(null);
 
-        const activeUrl = backendUrl || 'http://localhost:8000';
-
         try {
-            const response = await fetch(`${activeUrl}/ceo-advisor`, {
+            const response = await fetch(API_ENDPOINTS.CEO_ADVISOR, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
